@@ -31,3 +31,7 @@ func (m *Hello) Hello(
 func (m *Hello) Snyk(ctx context.Context) (string, error) {
 	return "i am running snyk commands\n", nil
 }
+
+func (m *Hello) SNYKMONITOR(ctx context.Context) (string, error) {
+	return "i am running snyk monitor commands\n", nil
+}
