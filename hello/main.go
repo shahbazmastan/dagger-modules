@@ -9,8 +9,6 @@ import (
 
 type Hello struct{}
 
-// Called as:
-// dagger call hello --release-version=... --tag-prefix=... --dry-run=... --github-token=...
 func (m *Hello) Hello(
 	ctx context.Context,
 	ReleaseVersion string,
