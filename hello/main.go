@@ -27,3 +27,7 @@ func (m *Hello) Hello(
 		DryRun,
 	), nil
 }
+
+func (m *Hello) Snyk(ctx context.Context) (string, error) {
+	return "i am running snyk commands\n", nil
+}
