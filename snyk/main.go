@@ -1,21 +1,17 @@
 package main
 
-import (
-	"context"
-)
+import "context"
 
 type Snyk struct{}
 
-func New(ctx context.Context) (*Snyk, error) {
-	return &Snyk{}, nil
+func New() *Snyk {
+	return &Snyk{}
 }
 
-// dagger call test
 func (m *Snyk) Test(ctx context.Context) (string, error) {
 	return "i am running snyk test commands in snyk module\n", nil
 }
 
-// dagger call monitor
 func (m *Snyk) Monitor(ctx context.Context) (string, error) {
 	return "i am running snyk monitor commands in snyk module\n", nil
 }
