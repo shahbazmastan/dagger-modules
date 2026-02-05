@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/shahbazmastan/dagger-modules/snyk/internal/dagger"
@@ -13,10 +14,7 @@ type Snyk struct {
 	Age      int
 }
 
-// New is the constructor.
-// Its parameters become flags on `dagger call` (NOT `dagger call new`).
 func New(
-	// Source directory to work with
 	src *dagger.Directory,
 	name string,
 	age int,
@@ -26,31 +24,18 @@ func New(
 	greeting string,
 ) *Snyk {
 	if greeting == "" {
-		greeting = "Hello" // defensive fallback
+		greeting = "Hello"
 	}
-
-	return &Snyk{
-		Src:      src,
-		Greeting: greeting,
-		Name:     name,
-		Age:      age,
-	}
+	return &Snyk{Src: src, Greeting: greeting, Name: name, Age: age}
 }
 
-func (m *Snyk) Monitor() {
-	fmt.Println(m.Greeting + ", " + m.Name + "! You are " + string(rune(m.Age)) + " years old.")
-
+func (m *Snyk) Monitor(ctx context.Context) (string, error) {
+	// Use fmt.Sprintf (Age prints correctly)
+	msg := fmt.Sprintf("%s, %s! You are %d years old.", m.Greeting, m.Name, m.Age)
+	return msg + "\n", nil
 }
 
-func (m *Snyk) Test() {
-	fmt.Println(m.Greeting + ", " + m.Name + "! You are " + string(rune(m.Age)) + " years old.")
+func (m *Snyk) Test(ctx context.Context) (string, error) {
+	msg := fmt.Sprintf("%s, %s! You are %d years old.", m.Greeting, m.Name, m.Age)
+	return msg + "\n", nil
 }
-
-// func (m *Snyk) Test(ctx context.Context) (string, error) {
-// 	// Just demonstrating that we have Src now
-// 	return "i am running snyk test commands in snyk module (src provided)\n", nil
-// }
-
-// func (m *Snyk) Monitor(ctx context.Context) (string, error) {
-// 	return "i am running snyk monitor commands in snyk module (src provided)\n", nil
-// }
