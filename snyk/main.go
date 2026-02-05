@@ -15,6 +15,7 @@ type Snyk struct {
 }
 
 func New(
+	ctx context.Context,
 	src *dagger.Directory,
 	name string,
 	age int,
