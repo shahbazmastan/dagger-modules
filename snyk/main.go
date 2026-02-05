@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/shahbazmastan/dagger-modules/snyk/internal/dagger"
 )
 
@@ -35,12 +37,13 @@ func New(
 	}
 }
 
-func (m *Snyk) Monitor() string {
-	return m.Greeting + ", " + m.Name + "! You are " + string(rune(m.Age)) + " years old."
+func (m *Snyk) Monitor() {
+	fmt.Println(m.Greeting + ", " + m.Name + "! You are " + string(rune(m.Age)) + " years old.")
+
 }
 
-func (m *Snyk) Test() string {
-	return m.Greeting + ", " + m.Name + "! You are " + string(rune(m.Age)) + " years old."
+func (m *Snyk) Test() {
+	fmt.Println(m.Greeting + ", " + m.Name + "! You are " + string(rune(m.Age)) + " years old.")
 }
 
 // func (m *Snyk) Test(ctx context.Context) (string, error) {
