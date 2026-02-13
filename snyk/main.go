@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/shahbazmastan/dagger-modules/snyk/internal/dagger"
+	"dagger/snyk/internal/dagger"
 )
 
 type Snyk struct {
@@ -30,13 +30,13 @@ func New(
 	return &Snyk{Src: src, Greeting: greeting, Name: name, Age: age}
 }
 
-func (m *Snyk) Monitor(ctx context.Context) (string, error) {
+func (m *Snyk) Monitor(ctx context.Context) string {
 	// Use fmt.Sprintf (Age prints correctly)
 	msg := fmt.Sprintf("%s, %s! You are %d years old.", m.Greeting, m.Name, m.Age)
-	return msg + "\n", nil
+	return msg
 }
 
-func (m *Snyk) Test(ctx context.Context) (string, error) {
+func (m *Snyk) Test(ctx context.Context) string {
 	msg := fmt.Sprintf("%s, %s! You are %d years old.", m.Greeting, m.Name, m.Age)
-	return msg + "\n", nil
+	return msg
 }
