@@ -40,3 +40,11 @@ func (m *Snyk) Test(ctx context.Context) string {
 	msg := fmt.Sprintf("%s, %s! You are %d years old.", m.Greeting, m.Name, m.Age)
 	return msg
 }
+
+// ContainerEcho returns a greeting message from an Alpine container
+func (m *Snyk) ContainerEcho(ctx context.Context) (string, error) {
+	return dag.Container().
+		From("alpine:latest").
+		WithExec([]string{"echo", fmt.Sprintf("%s, %s!", m.Greeting, m.Name)}).
+		Stdout(ctx)
+}
